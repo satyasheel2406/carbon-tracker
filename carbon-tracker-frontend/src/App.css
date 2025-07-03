@@ -1,0 +1,121 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+canvas {
+  color: inherit !important;
+}
+@media print {
+  .screen-only {
+    display: none;
+  }
+}
+@media print {
+  .screen-only {
+    display: none !important;
+  }
+
+  #report h2 {
+    color: #000 !important;
+  }
+
+  #report span {
+    font-size: 12px;
+    color: #444 !important;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* === INVENTRA Dark Mode & Header Styles === */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.light {
+  --header-bg: #ffffff;
+  --header-text: #222;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+body.dark {
+  --header-bg: #1e1e1e;
+  --header-text: #f9f9f9;
+  background-color: #121212;
+  color: #f9f9f9;
+}
+
+.app-header button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  background-color: #00a86b;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.app-header button:hover {
+  background-color: #007a56;
+}
+.hero {
+  padding: 60px 24px 40px;
+  background: linear-gradient(to right, #59b983, #1a9859);
+  color: white;
+  text-align: center;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
