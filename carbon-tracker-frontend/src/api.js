@@ -1,7 +1,7 @@
-// src/api.js
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:5000";
+// ⛳ Use your deployed backend URL here
+const API_BASE_URL = "https://carbon-tracker-backend1.onrender.com";
 
 export const calculateFootprint = async (formData) => {
   try {
