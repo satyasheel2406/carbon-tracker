@@ -140,16 +140,57 @@ const Results = ({ result, theme }) => {
 
   const renderCombinedCharts = () => {
   const lightTheme = true; // force light theme in PDF
-
   const isDark = false; // Override dark mode rendering
 
+  // ✅ Force axis/tick colors to dark for PDF
+  const pdfChartOptions = {
+    ...chartOptions,
+    scales: {
+      x: {
+        ...chartOptions.scales.x,
+        title: {
+          ...chartOptions.scales.x.title,
+          color: '#333'
+        },
+        ticks: {
+          ...chartOptions.scales.x.ticks,
+          color: '#333'
+        }
+      },
+      y: {
+        ...chartOptions.scales.y,
+        title: {
+          ...chartOptions.scales.y.title,
+          color: '#333'
+        },
+        ticks: {
+          ...chartOptions.scales.y.ticks,
+          color: '#333'
+        }
+      }
+    },
+    plugins: {
+      ...chartOptions.plugins,
+      legend: {
+        ...chartOptions.plugins.legend,
+        labels: {
+          ...chartOptions.plugins.legend.labels,
+          color: '#333'
+        }
+      }
+    }
+  };
+
   return (
-    <div id="combined-charts" style={{
-      width: '700px',
-      backgroundColor: '#fff',
-      color: '#222',
-      padding: '20px'
-    }}>
+    <div
+      id="combined-charts"
+      style={{
+        width: '700px',
+        backgroundColor: '#fff',
+        color: '#222',
+        padding: '20px'
+      }}
+    >
       <h3 style={{ color: '#333', textAlign: 'center' }}>
         📊 Monthly vs Yearly Comparison
       </h3>
@@ -157,21 +198,23 @@ const Results = ({ result, theme }) => {
         <Bar
           data={{
             labels: ['Monthly Footprint', 'Yearly Projection'],
-            datasets: [{
-              label: 'kg CO₂',
-              data: [result.total, yearlyTotal],
-              backgroundColor: ['#00a86b', '#ff4d4f'],
-              borderRadius: 6
-            }]
+            datasets: [
+              {
+                label: 'kg CO₂',
+                data: [result.total, yearlyTotal],
+                backgroundColor: ['#00a86b', '#ff4d4f'],
+                borderRadius: 6
+              }
+            ]
           }}
-          options={chartOptions}
+          options={pdfChartOptions}
         />
       </div>
       <h3 style={{ color: '#333', textAlign: 'center' }}>
         📊 Emissions Breakdown
       </h3>
       <div style={{ height: '260px' }}>
-        <Bar data={chartData} options={chartOptions} />
+        <Bar data={chartData} options={pdfChartOptions} />
       </div>
     </div>
   );
