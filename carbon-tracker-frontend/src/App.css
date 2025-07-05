@@ -99,23 +99,55 @@ body.dark {
   background-color: #007a56;
 }
 .hero {
-  padding: 60px 24px 40px;
-  background: linear-gradient(to right, #59b983, #1a9859);
+  background: linear-gradient(135deg, #00bf72, #06b69a);
   color: white;
   text-align: center;
-  border-radius: 0 0 16px 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 40px 16px;
+  border-radius: 12px;
+  margin: 20px 16px;
 }
 
 .hero h1 {
-  margin-bottom: 10px;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.15rem;
-  line-height: 1.5;
-  opacity: 0.95;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 16px;
 }
+
+/* Add this if you move dark mode toggle here */
+.theme-toggle {
+  margin-top: 12px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #00a86b;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.theme-toggle {
+  margin-top: 14px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #00a86b;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.03);
+}
+
 

@@ -61,6 +61,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="car"
+          min="0"  
           value={form.car}
           onChange={handleChange}
           title="Total kilometers traveled by car in a month"
@@ -71,6 +72,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="bike"
+            min="0"  
           value={form.bike}
           onChange={handleChange}
           title="Monthly distance traveled by two-wheeler"
@@ -81,6 +83,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="bus"
+            min="0"  
           value={form.bus}
           onChange={handleChange}
           title="Bus kilometers used per month"
@@ -91,6 +94,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="train"
+            min="0"  
           value={form.train}
           onChange={handleChange}
           title="Train kilometers traveled in a month"
@@ -101,6 +105,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="flights"
+            min="0"  
           value={form.flights}
           onChange={handleChange}
           title="Domestic and international air travel distance per month"
@@ -115,6 +120,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="electricity"
+            min="0"  
           value={form.electricity}
           onChange={handleChange}
           title="Electricity usage in kilowatt-hours per month"
@@ -125,6 +131,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="lpg"
+            min="0"  
           value={form.lpg}
           onChange={handleChange}
           title="Amount of LPG used in kilograms per month"
@@ -139,6 +146,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="cigarettes"
+            min="0"  
           value={form.cigarettes}
           onChange={handleChange}
           title="Average number of cigarettes smoked per day"
@@ -149,6 +157,7 @@ const InputForm = ({ onSubmit }) => {
         <input
           type="number"
           name="plastic"
+            min="0"  
           value={form.plastic}
           onChange={handleChange}
           title="Number of 500ml plastic bottles used per month"

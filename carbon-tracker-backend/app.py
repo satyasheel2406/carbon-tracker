@@ -1,4 +1,4 @@
-# ✅ app.py — Flask Backend with Real CO₂ Factors
+# ✅ Final Correct app.py — expects lowercase keys from frontend
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -9,27 +9,25 @@ CORS(app)
 def calculate():
     data = request.json
 
-    # CO₂ emission factors (kg CO₂ per unit)
     FACTORS = {
-        'car': 0.192,           # kg/km
-        'bike': 0.07,           # kg/km
-        'bus': 0.105,           # kg/km
-        'train': 0.041,         # kg/km
-        'flights': 0.15,        # kg/km (domestic average)
-        'electricity': 0.82,    # kg/kWh
-        'lpg': 2.983,           # kg/kg
-        'cigarettes': 0.014,    # kg/cigarette
-        'plastic': 0.0828       # kg/bottle (500ml)
+        'car': 0.192,
+        'bike': 0.07,
+        'bus': 0.105,
+        'train': 0.041,
+        'flights': 0.15,
+        'electricity': 0.82,
+        'lpg': 2.983,
+        'cigarettes': 0.014,
+        'plastic': 0.0828
     }
 
-    # Normalize and calculate emissions
     emissions = {}
     total = 0.0
 
     for key, factor in FACTORS.items():
-        raw = float(data.get(key, 0))
+        raw = float(data.get(key, 0))  # 👈 lowercase key from frontend
         if key == "cigarettes":
-            raw *= 30  # daily -> monthly
+            raw *= 30
         emissions[key.capitalize()] = round(raw * factor, 2)
         total += raw * factor
 
@@ -38,4 +36,3 @@ def calculate():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

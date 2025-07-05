@@ -138,9 +138,21 @@ const Results = ({ result, theme }) => {
   const yearlyTotal = (result.total * 12).toFixed(2);
   const treesRequired = Math.ceil(yearlyTotal / 21.77);
 
-  const renderCombinedCharts = () => (
-    <div id="combined-charts" style={{ width: '700px', backgroundColor: isDark ? '#1e1e1e' : '#fff', padding: '20px' }}>
-      <h3 style={{ color: isDark ? '#ccc' : '#333', textAlign: 'center' }}>📊 Monthly vs Yearly Comparison</h3>
+  const renderCombinedCharts = () => {
+  const lightTheme = true; // force light theme in PDF
+
+  const isDark = false; // Override dark mode rendering
+
+  return (
+    <div id="combined-charts" style={{
+      width: '700px',
+      backgroundColor: '#fff',
+      color: '#222',
+      padding: '20px'
+    }}>
+      <h3 style={{ color: '#333', textAlign: 'center' }}>
+        📊 Monthly vs Yearly Comparison
+      </h3>
       <div style={{ height: '260px', marginBottom: '30px' }}>
         <Bar
           data={{
@@ -148,22 +160,23 @@ const Results = ({ result, theme }) => {
             datasets: [{
               label: 'kg CO₂',
               data: [result.total, yearlyTotal],
-              backgroundColor: [
-                isDark ? 'rgba(0, 230, 118, 0.7)' : '#00a86b',
-                isDark ? 'rgba(255, 99, 132, 0.7)' : '#ff4d4f'
-              ],
+              backgroundColor: ['#00a86b', '#ff4d4f'],
               borderRadius: 6
             }]
           }}
           options={chartOptions}
         />
       </div>
-      <h3 style={{ color: isDark ? '#ccc' : '#333', textAlign: 'center' }}>📊 Emissions Breakdown</h3>
+      <h3 style={{ color: '#333', textAlign: 'center' }}>
+        📊 Emissions Breakdown
+      </h3>
       <div style={{ height: '260px' }}>
         <Bar data={chartData} options={chartOptions} />
       </div>
     </div>
   );
+};
+
 const downloadPDF = () => {
   const downloadButton = document.getElementById('download-button');
   downloadButton.disabled = true;
@@ -188,6 +201,9 @@ const downloadPDF = () => {
         // Clone the original report
 const originalReport = document.getElementById('report');
 const report = originalReport.cloneNode(true);
+report.classList.remove('dark'); // force remove dark class
+report.classList.add('light');   // ensure light mode
+
 
 // ❌ Remove the download button from the clone
 const downloadBtn = report.querySelector('#download-button');
