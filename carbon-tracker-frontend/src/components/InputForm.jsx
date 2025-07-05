@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Form.css';
 
+
 const InputForm = ({ onSubmit }) => {
   const [form, setForm] = useState({
   car: "",
@@ -23,21 +24,31 @@ const InputForm = ({ onSubmit }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(false); // Add this at the top of your component
 
-    const parsedForm = {
-      fuel_type: form.fuel_type,
-      diet: form.diet,
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true); // Start loading
 
-    for (const key in form) {
-      if (["fuel_type", "diet"].includes(key)) continue;
-      parsedForm[key] = Number(form[key]) || 0;
-    }
-
-    onSubmit(parsedForm);
+  const parsedForm = {
+    fuel_type: form.fuel_type,
+    diet: form.diet,
   };
+
+  for (const key in form) {
+    if (["fuel_type", "diet"].includes(key)) continue;
+    parsedForm[key] = Number(form[key]) || 0;
+  }
+
+  try {
+    await onSubmit(parsedForm); // Wait for result from backend
+  } catch (err) {
+    alert("Error generating report");
+  }
+
+  setLoading(false); // End loading
+};
+
   const handleReset = () => {
     setForm({
       car: "",
@@ -166,7 +177,10 @@ const InputForm = ({ onSubmit }) => {
     </div>
 
     <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-      <button type="submit">📊 Calculate My Carbon Footprint</button>
+     <button type="submit" disabled={loading}>
+  {loading ? "⏳ Preparing Report..." : "📊 Calculate My Carbon Footprint"}
+</button>
+
       <button type="button" onClick={handleReset} style={{ backgroundColor: '#ccc', color: '#000' }}>
         ♻️ Reset
       </button>
