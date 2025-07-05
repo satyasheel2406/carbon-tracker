@@ -183,6 +183,20 @@ const downloadPDF = () => {
   downloadButton.innerText = "⏳ Preparing Report...";
   const originalTheme = document.body.className;
   document.body.className = "light";
+  // 🔽 Inject custom style to force dark text in PDF
+const styleTag = document.createElement("style");
+styleTag.innerHTML = `
+  #report h1, 
+  #report h2, 
+  #report h3,
+  #report span,
+  #report p,
+  #report li {
+    color: #222 !important;
+  }
+`;
+document.head.appendChild(styleTag);
+
 
   const tempDiv = document.createElement('div');
   tempDiv.style.position = 'fixed';
@@ -241,6 +255,7 @@ if (downloadBtn) {
             root.unmount();
             document.body.removeChild(tempDiv);
              // ✅ Restore original theme
+             document.head.removeChild(styleTag); 
     document.body.className = originalTheme;
 
             downloadButton.disabled = false;
@@ -252,8 +267,11 @@ if (downloadBtn) {
         document.body.removeChild(tempDiv);
         alert("Failed to generate PDF.");
         downloadButton.disabled = false;
+        document.head.removeChild(styleTag);
+document.body.className = originalTheme;
+
         downloadButton.innerText = "📄 Download Full PDF Report";
-         document.body.className = originalTheme;
+       
       });
     }, 800); // Allow chart render time
   });
