@@ -181,6 +181,8 @@ const downloadPDF = () => {
   const downloadButton = document.getElementById('download-button');
   downloadButton.disabled = true;
   downloadButton.innerText = "⏳ Preparing Report...";
+  const originalTheme = document.body.className;
+  document.body.className = "light";
 
   const tempDiv = document.createElement('div');
   tempDiv.style.position = 'fixed';
@@ -238,6 +240,9 @@ if (downloadBtn) {
           .then(() => {
             root.unmount();
             document.body.removeChild(tempDiv);
+             // ✅ Restore original theme
+    document.body.className = originalTheme;
+
             downloadButton.disabled = false;
             downloadButton.innerText = "📄 Download Full PDF Report";
           });
@@ -248,6 +253,7 @@ if (downloadBtn) {
         alert("Failed to generate PDF.");
         downloadButton.disabled = false;
         downloadButton.innerText = "📄 Download Full PDF Report";
+         document.body.className = originalTheme;
       });
     }, 800); // Allow chart render time
   });
