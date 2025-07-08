@@ -216,16 +216,20 @@ const handleSubmit = async (e) => {
   </label>
 </div>
 
-    <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-     <button type="submit" disabled={loading}>
-  {loading ? loadingText : "📊 Calculate My Carbon Footprint"}
-</button>
+    <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexDirection: 'column', alignItems: 'flex-start' }}>
+  <div style={{ display: 'flex', gap: '12px' }}>
+    <button type="submit" disabled={loading}>
+      {loading ? "⏳ Preparing Report..." : "📊 Calculate My Carbon Footprint"}
+    </button>
+    <button type="button" onClick={handleReset} style={{ backgroundColor: '#ccc', color: '#000' }}>
+      ♻️ Reset
+    </button>
+  </div>
+  <p style={{ fontSize: '0.85rem', color: 'gray', marginTop: '6px' }}>
+    ⏳ First request may take ~50s to respond due to free-tier backend spin-up.
+  </p>
+</div>
 
-
-      <button type="button" onClick={handleReset} style={{ backgroundColor: '#ccc', color: '#000' }}>
-        ♻️ Reset
-      </button>
-    </div>
   </form>
 );
 
