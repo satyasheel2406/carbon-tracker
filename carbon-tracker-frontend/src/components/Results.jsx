@@ -107,6 +107,9 @@ const Results = ({ result, theme }) => {
     if (emissions.Lpg < 25) kudos.push("🔥 Great conservation of LPG!");
     if (emissions.Cigarettes < 1) kudos.push("🚭 Avoiding cigarettes — amazing!");
     if (emissions.Plastic < 0.5) kudos.push("🧴 Very low plastic usage!");
+    if (emissions.Food < 20) kudos.push("🍽️ Low food-related impact — nice choices!");
+    if (emissions.Shopping < 15) kudos.push("🛍️ Minimal shopping emissions — great!");
+
 
     return kudos;
   };
@@ -123,6 +126,8 @@ const Results = ({ result, theme }) => {
     if (emissions.Lpg > 44.7) tips.push("🔥 Try induction cooktops or solar.");
     if (emissions.Cigarettes > 1.26) tips.push("🚭 Reduce smoking — it's eco-friendly.");
     if (emissions.Plastic > 0.828) tips.push("🧴 Use reusable bottles & bags.");
+    if (emissions.Food > 40) tips.push("🍽️ Try reducing meat-heavy meals and food waste.");
+    if (emissions.Shopping > 30) tips.push("🛍️ Buy less, choose sustainable, and reuse.");
 
     tips.push("🌳 Plant more trees to offset your emissions.");
 
