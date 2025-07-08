@@ -27,10 +27,19 @@ const InputForm = ({ onSubmit }) => {
   };
 
   const [loading, setLoading] = useState(false); // Add this at the top of your component
+  const [firstTime, setFirstTime] = useState(true);
+const [loadingText, setLoadingText] = useState("⏳ Preparing Report...");
+
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  setLoading(true); // Start loading
+  setLoading(true);
+
+  if (firstTime) {
+    setLoadingText("☁️ Waking up server (first time)... please wait");
+  } else {
+    setLoadingText("⏳ Preparing Report...");
+  }
 
   const parsedForm = {
     fuel_type: form.fuel_type,
@@ -43,13 +52,15 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    await onSubmit(parsedForm); // Wait for result from backend
+    await onSubmit(parsedForm);
+    setFirstTime(false); // ✅ Only the first time shows the "waking up" message
   } catch (err) {
     alert("Error generating report");
   }
 
-  setLoading(false); // End loading
+  setLoading(false);
 };
+
 
   const handleReset = () => {
     setForm({
@@ -207,8 +218,9 @@ const handleSubmit = async (e) => {
 
     <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
      <button type="submit" disabled={loading}>
-  {loading ? "⏳ Preparing Report..." : "📊 Calculate My Carbon Footprint"}
+  {loading ? loadingText : "📊 Calculate My Carbon Footprint"}
 </button>
+
 
       <button type="button" onClick={handleReset} style={{ backgroundColor: '#ccc', color: '#000' }}>
         ♻️ Reset
