@@ -12,7 +12,9 @@ const InputForm = ({ onSubmit }) => {
   electricity: "",
   lpg: "",
   cigarettes: "",
-  plastic: ""
+  plastic: "",
+  food: "",
+  shopping: ""
 });
 
 
@@ -59,7 +61,9 @@ const handleSubmit = async (e) => {
       electricity: "",
       lpg: "",
       cigarettes: "",
-      plastic: ""
+      plastic: "",
+      food: "",
+  shopping: ""
     });
   };
 
@@ -175,6 +179,31 @@ const handleSubmit = async (e) => {
         />
       </label>
     </div>
+  <div className="form-section">
+  <h2>🛒 Consumption</h2>
+  <label>
+    🍽 Monthly Food Spending (₹)
+    <input
+      type="number"
+      name="food"
+      min="0"
+      value={form.food}
+      onChange={handleChange}
+      title="Monthly expenditure on food and dining"
+    />
+  </label>
+  <label>
+    🛍 Monthly Shopping Spending (₹)
+    <input
+      type="number"
+      name="shopping"
+      min="0"
+      value={form.shopping}
+      onChange={handleChange}
+      title="Monthly spending on clothes, electronics, etc."
+    />
+  </label>
+</div>
 
     <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
      <button type="submit" disabled={loading}>
